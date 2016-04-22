@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <title>Highcharts Example</title>
+            <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+            <script type="text/javascript" src="highcharts.js"></script>
+            <script>
+                //禁止长按弹出框
+                window.onload=function(){
+                    document.documentElement.style.webkitUserSelect='none';
+                };
+                function startDrawWeek(week, data)
+                {
+                    $('#container').highcharts({
+                                               chart: {
+                                               type: 'column'
+                                               },
+                                               title: {
+                                               text: null
+                                               },
+                                               subtitle: {
+                                               text: null
+                                               },
+                                               xAxis: {
+                                               categories: week
+                                               },
+                                               yAxis: {
+                                               min: 0,
+                                               title: {
+                                               text: null
+                                               }
+                                               },
+                                               tooltip: {
+                                               valueSuffix: '步',
+                                               },
+                                               plotOptions: {
+                                               column: {
+                                               pointPadding: 0.2,
+                                               borderWidth: 0,
+                                               pointWidth: 28,
+                                               color: '#33cccc'
+                                               }
+                                               },
+                                               legend:{
+                                               enabled:false
+                                               },
+                                               credits:{
+                                               enabled:false // 禁用版权信息
+                                               },
+                                               series: [{
+                                                        name: '步数',
+                                                        data: data
+                                                        }]
+                                               });
+                }
+                function startDraw(data)
+                {
+                    $('#container').highcharts({
+                                               title: {
+                                               text: null
+                                               },
+                                               subtitle: {
+                                               text: null,
+                                               },
+                                               xAxis: {
+                                               type: 'datetime',
+                                               labels: {
+                                               formatter: function () {
+                                               return Highcharts.dateFormat('%m月%e日', this.value);
+                                               }
+                                               }
+                                               },
+                                               yAxis: {
+                                               title: {
+                                               text: null
+                                               },
+                                               plotLines: [{
+                                                           value: 0,
+                                                           width: 1,
+                                                           }]
+                                               },
+                                               tooltip: {
+                                               valueSuffix: '步'
+                                               },
+                                               legend: {
+                                               enabled:false
+                                               },
+                                               credits:{
+                                               enabled:false // 禁用版权信息
+                                               },
+                                               series: [{
+                                                        name: '步数',
+                                                        data: data,
+                                                        color: '#33cccc'
+                                                        }]
+                                               });
+                }
+            </script>
+            </head>
+    <body height="100%">
+        <div id="container" style="width: 300px; height: 280px; margin: 0 auto">this is WALK container</div>
+    </body>
+</html>
